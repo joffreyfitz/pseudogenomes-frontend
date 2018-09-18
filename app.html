@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pseudogenomes Download Tool</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Download 1001 Genomes pseudogenomes for genes and regions">
+  	<meta name="author" content="Joffrey Fitz">
+
+	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css" />
+
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.11.0/css/selectize.bootstrap3.css">
+
+	<link rel="stylesheet" type="text/css" href="css/1001_pseudogenomes_app.css" />
+	<link rel="stylesheet" type="text/css" href="css/tgtools_breadcrumbs.css" />
+
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="//cdn.datatables.net/1.10.8/js/jquery.dataTables.js" charset="utf-8"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.11.0/js/standalone/selectize.min.js"></script>
+
+</head>
+<body>
+
+	<!-- HEADER AND NAVBAR -->
+	<header>
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">1001Genomes Tools</a>
+				</div>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#select_strains" id="pseudogenomes_download_nav_link" class="navigation_link"><i class="fa fa-chevron-right"></i> Pseudogenomes Download</a></li>
+					<li><a href="#about" id="about_nav_link" class="navigation_link"><i class="fa fa-comment"></i> About</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<!-- MAIN CONTENT -->
+	<div class="main-content fill" id="main">
+
+		<!-- Pseudogenomes Strain Selection -->
+		<div class="pseudogenomes_select_strains page invisible">
+			<div class="container">
+				<div class="row">
+			    	<div class="col-lg-12">
+
+				    	<h1>Pseudogenomes Download</h1>
+				    	<h2 class="subtitle">Reference calls combined with variants including indels. <i><a href="#about">More...</a></i></h2>
+
+						<div class="tgtools_breadcrumbs_container">
+							<ul class="tgtools_breadcrumb">
+								<li class="active nolink"><a href="#">Select Accessions</a></li>
+								<li class="nolink"><a href="#">Select Loci</a></li>
+								<li class="nolink"><a href="#">Download</a></li>
+							</ul>
+						</div>
+				        
+				        <h2>Please select a set of strains.</h2>
+
+				        <table id="example" class="table table-striped table-bordered display select" cellspacing="0" width="100%">
+						   <thead>
+						      <tr>
+								<th><input id="example_select_all" value="1" type="checkbox" class="dt-head-center"></th>
+							    <th>Ecotype ID</th>
+								<th>Name</th>
+								<th>CS Number</th>
+								<th>Country</th>
+								<th>Group</th>
+						      </tr>
+						   </thead>
+						</table>
+
+						<p><button id="btn_pseudogenomes_submit_strains" class="btn btn-primary">Next &gt;</button></p>
+
+				    </div>
+					
+				</div> <!-- /row -->
+			</div> <!-- /container -->
+		</div>
+
+		<!-- Pseudogenomes Loci Selection -->
+		<div class="pseudogenomes_select_loci page invisible">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+
+				    	<h1>Pseudogenomes Download</h1>
+				        <h2 class="subtitle">Reference calls combined with variants including indels. <i><a href="#about">More...</a></i></h2>
+
+				        <div class="tgtools_breadcrumbs_container">
+							<ul class="tgtools_breadcrumb">
+								<li class="active"><a href="#select_strains">Select Accessions</a></li>
+								<li class="active nolink"><a href="#select_loci">Select Loci</a></li>
+								<li class="nolink"><a href="#">Download</a></li>
+							</ul>
+						</div>
+
+				        <h2>Select a locus. Specify a gene identifier (e.g. At1G01070) or a region
+				        	(e.g. Chr1:9001000..10001000).</h2>
+
+				        <div class="box_wrapper">
+				        	<div class="control-group">
+				        		<label for="select-gi">Gene ID:</label>
+			            		<select name="gis" id="select-gi" class="gi" placeholder="Type to pick a TAIR ID..."></select>
+			            	</div>
+			            	<div class="control-group">
+				        		<label for="select-range">Or region:</label>
+			            		<select name="range" id="select-range" class="range" placeholder="Type to add a region..."></select>
+			            	</div>
+			            	<div class="control-group">
+			            		<div class="checkbox">
+									<label><input type="checkbox" id="align_check" value="align">Align sequences</label>
+								</div>
+							</div>
+			            </div>
+
+			            <p><button id="btn_pseudogenomes_select_loci_back" class="btn btn-default">
+				        	&lt; Back
+				        </button>
+				        <button id="btn_pseudogenomes_submit_loci" class="btn btn-primary">
+				        	Create Sequences &gt;
+				        </button></p>
+
+				    </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Pseudogenomes Download Parameters-->
+		<div class="pseudogenomes_download_params page invisible">
+			<div class="container fill">
+				<div class="row">
+					<div class="col-lg-12">
+
+			        	<h1>Pseudogenomes Download</h1>
+				    	<h2 class="subtitle">Reference calls combined with variants including indels. <i><a href="#about">More...</a></i></h2>
+
+			        	<div class="tgtools_breadcrumbs_container">
+							<ul class="tgtools_breadcrumb">
+								<li class="active"><a href="#select_strains">Select Accessions</a></li>
+								<li class="active"><a href="#select_loci">Select Loci</a></li>
+								<li class="active nolink"><a href="#">Download</a></li>
+							</ul>
+						</div>
+
+				        <h2 id="process_download_h2">The sequences are ready to download</h2>
+
+				        <div id="download_time_msg" class="alert alert-warning warning_wrapper invisible">
+				        	
+				        </div>
+
+				        <div class="box_wrapper">
+				        	<label>Summary:</label></p>
+				        	<div class="alert alert-info" role="alert" id="pseudogenomes_download_summary">
+				        	</div>
+				        	<div id="pseudogenomes_download_link" class="invisible">
+				        	This link is valid for 24h.
+				        	<span id="pseudogenomes_pre_link"><pre>http://</pre></span>
+				        </div>
+				        </div>
+
+				        
+				        <div class="download_wrapper">
+				        	<form id="form_download_seq" method="post" action="/fcgi-bin/get_sequences.fcgi">
+					        	<p><button id="btn_pseudogenomes_download_params_back" class="btn btn-default" type="button">
+					        		&lt; Back
+					        	</button>
+					       
+					       		<a id="btn_pseudogenomes_download_fasta" 
+					       			href="" class="btn btn-primary">Download now <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
+				        		</p>
+							</form>
+				    	</div>
+
+			        </div>
+				</div> <!-- /row -->
+			</div> <!-- /container -->
+		</div>
+
+		<!-- Pseudogenomes Download -->
+		<div class="pseudogenomes_download_status page invisible">
+			<div class="container">
+				<div class="row">
+					<div id="progress_status">
+						
+						<h1>Pseudogenomes Download</h1>
+						<h2 class="subtitle">Reference calls combined with variants including indels. <i><a href="#about">More...</a></i></h2>
+
+						<p id="pseudogenomes_job_id_info_text">Your job identification is <span id="guidText"></span>.</p>
+						<div class="alert alert-info" role="alert" id="alert-info">
+						Status: <b><span id="statusText"></b></span>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div> <!-- pseudogenomes_download -->
+
+		<!-- About -->
+		<div class="pseudogenomes_about page invisible">
+			<div class="container fill">
+				<div class="row">
+					<div class="col-lg-12">
+			        	<h1>About</h1>
+			        		<p>Pseudogenomes for 1135 <i>Arabidopsis thaliana</i> strains were generated by combining reference and variant calls including indels, with uncalled sites represented as Ns. With this tool, specific genome regions and accessions can be selected for FASTA download. Col­0 annotated regions are interpolated for the applicable strain.
+			        		</p>
+			        	<h2>Credits</h2>
+			        		<p><ul><li>Pseudogenomes (<a href="http://1001genomes.org/data/GMI-MPI/releases/v3.1/pseudogenomes/">download FASTA files from the 1001 Genomes Data Center</a>) were generated by <a href="mailto:AlexanderP@gmx.at">Alexander Platzer</a>.
+			        		</p></li>
+			        		<li>
+			        		<p>Web app and database development was done by <a href="mailto:joffrey.fitz@tuebingen.mpg.de">Joffrey Fitz</a>.
+			        		</p></li></ul>
+			            <h2>References</h2>
+			            	<p>
+			            		<ul><li><a href="http://www.ncbi.nlm.nih.gov/pubmed/27293186">1,135 Genomes Reveal the Global Pattern of Polymorphism in Arabidopsis thaliana</a><br>
+										1001 Genomes Consortium<br>
+										<a href="http://dx.doi.org/10.1016/j.cell.2016.05.063">Cell</a> (2016), 166(2) 481-91.<br> 
+			            		</li></ul>
+			            	</p>
+			        </div>
+				</div> <!-- /row -->
+			</div> <!-- /container -->
+		</div>
+
+		<!-- Error message -->
+		<div class="pseudogenomes_error page invisible">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+			        	<h1>Pseudogenomes Download</h1>
+			        	<p>Something went wrong ...</p>
+						<div class="alert alert-danger" role="alert" id="error-message">
+						Error: <b><span id="error-message-text"></b></span>
+						</div>
+			        </div>
+				</div> <!-- /row -->
+			</div> <!-- /container -->
+		</div>
+	</div>
+
+
+	<footer class="footer">
+    	<div class="container">
+    		<div class="row">
+    			
+    			<div class="col-xs-8">
+    				<p class="text-muted">&copy; 2015-2018 by <a href="http://weigelworld.org">Max Planck Institute for Developmental Biology, Tübingen, Germany</a>.
+    				</p>
+    			</div>
+  				
+  				<div class="col-xs-4">
+  					<p class="text-muted text-right">
+  						<a href="mailto:joffrey.fitz@tuebingen.mpg.de">Help</a>
+						<span class="color_text"> | </span>
+  						<a href="http://tools.1001genomes.org/impressum.html">Impressum</a>
+						<span class="color_text"> | </span>
+						<a href="http://tuebingen.mpg.de/datenschutz">Datenschutz</a>
+					</p>
+  				</div>
+    			
+    		</div>
+    	</div>
+    </footer>
+
+	<script type="text/javascript" src="js/dataTables.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/spa.js"></script>
+	<script type="text/javascript" src="js/1001_pseudogenomes_app.js"></script>
+    <script type="text/javascript" src="js/selectize_1001.js"></script>
+
+</body>
+</html>

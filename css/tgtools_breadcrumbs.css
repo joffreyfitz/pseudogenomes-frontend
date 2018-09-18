@@ -1,0 +1,76 @@
+.tgtools_breadcrumb {
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: -40px;
+}
+.tgtools_breadcrumb { 
+	list-style: none; 
+	overflow: hidden; 
+	font: 16px Helvetica, Arial, Sans-Serif;
+}
+.tgtools_breadcrumb li { 
+	float: left;
+}
+.tgtools_breadcrumb li a {
+	color: white;
+	text-decoration: none; 
+	padding: 10px 0 8px 55px;
+	background: rgb(170,224,233);                   /* fallback color */
+	/*background: hsla(34,85%,35%,1); */
+	position: relative; 
+	display: block;
+	float: left;
+	width: 150px;
+}
+.tgtools_breadcrumb li a:after { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid rgb(170,224,233);
+	position: absolute;
+	top: 50%;
+	margin-top: -50px; 
+	left: 100%;
+	z-index: 2; 
+}	
+.tgtools_breadcrumb li a:before { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid white;
+	position: absolute;
+	top: 50%;
+	margin-top: -50px; 
+	margin-left: 1px;
+	left: 100%;
+	z-index: 1; 
+}	
+.tgtools_breadcrumb li:first-child a {
+	padding-left: 10px;
+}
+		
+.tgtools_breadcrumb li a:hover { background: rgb(46,159,178); }
+.tgtools_breadcrumb li a:hover:after { border-left-color: rgb(46,159,178) !important; }
+
+.tgtools_breadcrumb .nolink {
+	pointer-events: none;
+	cursor: default;
+}
+
+.tgtools_breadcrumb .active a       { background:        rgb(80,186,207); }
+.tgtools_breadcrumb .active a:after { border-left-color: rgb(80,186,207); }
+
+/* Fix Twitter Boostrap box-sizing border-box default */
+.tgtools_breadcrumb *,
+.tgtools_breadcrumb *:before,
+.tgtools_breadcrumb *:after {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
